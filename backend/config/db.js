@@ -2,9 +2,7 @@
 
 const mongoose = require('mongoose');
 
-let connectionString = `mongodb+srv://josephachang02:${process.env.MONGO_PASS}@practice.usvhzod.mongodb.net/?retryWrites=true&w=majority
-
-`
+let connectionString = `mongodb+srv://josephachang02:${process.env.MONGO_PASS}@practice.usvhzod.mongodb.net/Company?retryWrites=true&w=majority`
 console.log(connectionString);
 
 mongoose.connect(connectionString, {

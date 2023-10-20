@@ -35,9 +35,12 @@ const EventForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('/api/events', eventData);
+      const response = await axios({
+        url: '/server/events',
+        method: "POST",
+        data: eventData
+      });
       if (response.status >= 200 && response.status < 300) {
         console.log('Event registered successfully:', response.data);
       } else {
@@ -46,6 +49,16 @@ const EventForm = () => {
     } catch (error) {
       console.error('There was an error sending the request:', error);
     }
+    setEventData({
+      title: '',
+      date: '',
+      location: '',
+      description: '',
+      organizer: {
+        name: '',
+        role: ''
+      }
+    })
   };
 
   return (
