@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require ('morgan');
 const helmet = require('helmet'); // adds a bunch of standard security to server 
-require('dotenv').config();
+require('dotenv').config(); //connect password
 const PORT = 3000;
+require('./config/db.js'); //connect to database
 
 
 const app = express();
@@ -21,6 +22,15 @@ app.use(helmet());
 
 // START ROUTE //
 
+// 
+app.post("/events", (req,res) => {
+  //1. get the data that was sent in the front end 
+  let eventData = req.body.eventData
+  //or 
+  //let { eventData } = req.body
+
+  //2. model.create(eventData)
+})
 
 
 // END ROUTE // 
