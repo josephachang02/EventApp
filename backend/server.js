@@ -6,6 +6,7 @@ require('dotenv').config(); //connect password
 const PORT = 3000;
 require('./config/db.js'); //connect to database
 const Event = require('./models/Event.js');
+const { log } = require('console');
 
 const app = express();
 
@@ -21,6 +22,14 @@ app.use(helmet());
 // END MIDDLEWARE
 
 // START ROUTE //
+
+// get the events 
+
+app.get("/events", async (req,res) => {
+    let arrayOfEvents = await Event.find();
+    res.send(arrayOfEvents);
+})
+
 
 // 
 app.post("/events", async (req, res) => {
@@ -38,7 +47,22 @@ app.post("/events", async (req, res) => {
   //2. model.create(eventData)
 });
 
+app.delete("/events/:idOfEvent", async (req,res) => {
+    // findByIdAndDelete()
+    let id = req.params.idOfEvent;
+    let response = await Event.findByIdAndDelete(id);
+    console.log(response);
+    res.send('selected event has been removed')
+});
 
+app.put('/events/:idOfEvent/', async (req,res) => {
+    let id = req.params.idOfEvent;
+    let updatedData = req.body;
+    console.log(updatedData);
+    let response = await Event.findByIdAndUpdate(id, req.body, { new:true } );
+    res.send(response);
+    
+});
 // END ROUTE // 
 
 
