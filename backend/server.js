@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require ('morgan');
 const helmet = require('helmet'); // adds a bunch of standard security to server 
 require('dotenv').config(); //connect password
+const path = require("path");
 const PORT = 3000;
 require('./config/db.js'); //connect to database
 const Event = require('./models/Event.js');
@@ -11,7 +12,7 @@ const { log } = require('console');
 const app = express();
 
 
-
+app.use(express.static(path.join(__dirname, "dist")));
 // START MIDDLEWARE
 app.use(express.json());
 app.use(cors({
