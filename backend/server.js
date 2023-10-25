@@ -12,7 +12,7 @@ const { log } = require('console');
 const app = express();
 
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 // START MIDDLEWARE
 app.use(express.json());
 app.use(cors({
@@ -65,9 +65,9 @@ app.put('/events/:idOfEvent/', async (req,res) => {
     
 });
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-  });
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
+//   });
 // END ROUTE // 
 
 
