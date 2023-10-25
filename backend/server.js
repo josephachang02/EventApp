@@ -64,6 +64,10 @@ app.put('/events/:idOfEvent/', async (req,res) => {
     res.send(response);
     
 });
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
 // END ROUTE // 
 
 
