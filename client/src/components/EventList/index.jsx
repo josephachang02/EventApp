@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import { useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 import Event from '../Event';
@@ -59,7 +60,7 @@ const EventList = ({events, setEvents}) => {
     <div className="event-list">
       <h1>My List Of Events</h1>
       {events.map(event => (
-        <Event key={event._id} event={event} handleDelete={handleDelete} />
+        <Event key={event._id} event={event} setEvents={setEvents} handleDelete={handleDelete} />
       ))}
     </div>
   );
