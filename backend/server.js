@@ -72,6 +72,19 @@ app.put('/events/:idOfEvent/', async (req,res) => {
     
 });
 
+
+//Employees 
+
+app.get('/employees', async (req,res)=>{
+  let arrayOfEmployees = await Employee.find()
+  res.send(arrayOfEmployees)
+})
+
+app.post('/employees/', async (req,res)=>{
+  let response = await Employee.create(req.body);
+  res.send('Created a new element')
+})
+
 // app.get('/*', (req, res) => {
 //     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
 //   });

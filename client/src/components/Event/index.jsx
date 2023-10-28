@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const Event = ({event, handleDelete}) => {
+const Event = ({event, handleDelete, setEvents}) => {
     //  we will have many of this component!
 
     // EACH ONE will have a show form state
@@ -20,6 +20,20 @@ const Event = ({event, handleDelete}) => {
             data: {
                 description: newDescription
             } // FIND THIS IN THE REQ.BODY
+          }).then((response) => {
+
+            setEvents((events) => {
+              let stateCopy = events.map((eventObj) => {
+                if (eventObj._id === response.data._id) {
+                    return response.data;
+                } else {
+                    return eventObj
+                }
+            });
+            return stateCopy
+
+            
+        })
         })
     };
 
